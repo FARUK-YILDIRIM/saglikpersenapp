@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "38601969531",
+    "firebase_url": "https://saglikpersenbildirim.firebaseio.com",
+    "project_id": "saglikpersenbildirim",
+    "storage_bucket": "saglikpersenbildirim.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38601969531:android:189db1f63147544a",
+        "android_client_info": {
+          "package_name": "com.softalika.saglikpersen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38601969531-dq3hr5odhuumkm47v53fdv136ph0esmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN6__0jFLybgrVDXkRGzWrh7zQVrvdTiQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38601969531-dq3hr5odhuumkm47v53fdv136ph0esmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
