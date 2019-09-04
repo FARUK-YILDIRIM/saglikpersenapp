@@ -3,6 +3,8 @@ import { Text, View, StyleSheet, Share } from "react-native";
 import { Agenda } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
 import Icon from "react-native-vector-icons/AntDesign";
+import axios from "axios";
+import Spinner from "react-native-loading-spinner-overlay";
 
 import color from "../styles/colors";
 
@@ -10,7 +12,7 @@ LocaleConfig.locales["tr"] = {
   monthNames: [
     "Ocak",
     "Şubat",
-    "Mars",
+    "Mart",
     "Nisan",
     "Mayıs",
     "Haziran",
@@ -24,7 +26,7 @@ LocaleConfig.locales["tr"] = {
   monthNamesShort: [
     "Ocak",
     "Şubat",
-    "Mars",
+    "Mart",
     "Nisan",
     "Mayıs",
     "Haziran",
@@ -59,66 +61,73 @@ export default class Events extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: {
-        "2019-08-01": [
-          {
-            title: "Twitter TT Etkinliği",
-            time: "14:00",
-            desc:
-              "Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir. Lorem Ipsum kullanmanın amacı ne olaki.",
-            share: "#haşşştek"
-          },
-          {
-            title: "Sendika Toplantısı",
-            time: "14:30",
-            desc:
-              "Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir. Lorem Ipsum kullanmanın amacı ne olaki.",
-            share: "#sendika yada ne paylaşmak istiyorsan onu yaz.."
-          }
-        ],
-        "2019-07-31": [
-          {
-            title: "Basın Bülteni",
-            time: "09:10",
-            desc:
-              "Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir. Lorem Ipsum kullanmanın amacı ne olaki.",
-            share: "#sendika yada ne paylaşmak istiyorsan onu yaz.."
-          }
-        ]
-      }
+      items: {},
+      spinner: true
     };
+  }
+
+  componentDidMount() {
+    axios
+      .get(`http://192.168.1.34:3000/events/list`)
+      .then(response => {
+        const { data } = response;
+        const icerik = {};
+        data.map(item => {
+          icerik[item.eventDate] = item.eventData.map(item2 => {
+            return {
+              share: item2.share,
+              desc: item2.desc,
+              title: item2.title,
+              time: item2.time
+            };
+          });
+
+          this.setState({ items: icerik, spinner: false });
+        });
+        console.log(icerik);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
     return (
-      <Agenda
-        items={this.state.items}
-        loadItemsForMonth={this.loadItems.bind(this)}
-        selected={today}
-        renderItem={this.renderItem.bind(this)}
-        rowHasChanged={this.rowHasChanged.bind(this)}
-        renderEmptyData={() => {
-          return (
-            <View style={styles.emptyDate}>
-              <Text>Bugün planlanmış bir etkinlik yok.</Text>
-              <Text>Etkinlik olan günler takvimde işaretlenmiştir.</Text>
-            </View>
-          );
-        }}
-        theme={{
-          calendarBackground: "#ffffff",
-          //textSectionTitleColor: "#b6c1cd", //pzt sal
-          selectedDayBackgroundColor: color.primary,
-          todayTextColor: color.primary,
-          dayTextColor: color.primary,
-          agendaKnobColor: color.primary,
-          dotColor: color.primary,
-          selectedDotColor: color.primary,
-          monthTextColor: color.primary,
-          indicatorColor: color.primary,
-          agendaTodayColor: color.primary
-        }}
-      />
+      <React.Fragment>
+        <Spinner
+          visible={this.state.spinner}
+          textContent={"Yükleniyor..."}
+          textStyle={styles.spinnerTextStyle}
+        />
+        <Agenda
+          items={this.state.items}
+          loadItemsForMonth={this.loadItems.bind(this)}
+          selected={today}
+          renderItem={this.renderItem.bind(this)}
+          rowHasChanged={this.rowHasChanged.bind(this)}
+          renderEmptyData={() => {
+            return (
+              <View style={styles.emptyDate}>
+                <Text>Bugün planlanmış bir etkinlik yok.</Text>
+                <Text>Etkinlik olan günler takvimde işaretlenmiştir.</Text>
+              </View>
+            );
+          }}
+          theme={{
+            calendarBackground: "#ffffff",
+            //textSectionTitleColor: "#b6c1cd", //pzt sal
+            selectedDayBackgroundColor: color.primary,
+            todayTextColor: color.primary,
+            dayTextColor: color.primary,
+            agendaKnobColor: color.primary,
+            dotColor: color.primary,
+            selectedDotColor: color.primary,
+            monthTextColor: color.primary,
+            indicatorColor: color.primary,
+            agendaTodayColor: color.primary
+          }}
+        />
+      </React.Fragment>
     );
   }
 
@@ -215,5 +224,24 @@ const styles = StyleSheet.create({
   },
   share: {
     marginTop: 10
+  },
+  spinnerTextStyle: {
+    color: "#FFF"
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 10
+  },
+  instructions: {
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 5
   }
 });

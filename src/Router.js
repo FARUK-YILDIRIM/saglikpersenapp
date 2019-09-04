@@ -29,7 +29,7 @@ const TabNavigator = createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Events",
     lazyLoad: true,
     tabBarOptions: {
       activeTintColor: "#fff",
