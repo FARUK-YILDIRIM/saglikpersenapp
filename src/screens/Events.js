@@ -64,6 +64,7 @@ export default class Events extends Component {
       items: {},
       spinner: true
     };
+    console.disableYellowBox = true;
   }
 
   componentDidMount() {
@@ -169,7 +170,7 @@ export default class Events extends Component {
   onShare = async data => {
     try {
       const result = await Share.share({
-        message: "React Native | " + data
+        message: data
       });
 
       if (result.action === Share.sharedAction) {
