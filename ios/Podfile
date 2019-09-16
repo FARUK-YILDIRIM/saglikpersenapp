@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'saglikpersen' do
-  # Pods for saglikpersen
+target 'ÜniversitePersonelleri' do
+  # Pods for ÜniversitePersonelleri
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -31,7 +31,7 @@ target 'saglikpersen' do
 
   pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
 
-  target 'saglikpersenTests' do
+  target 'ÜniversitePersonelleriTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -39,10 +39,10 @@ target 'saglikpersen' do
   use_native_modules!
 end
 
-target 'saglikpersen-tvOS' do
-  # Pods for saglikpersen-tvOS
+target 'ÜniversitePersonelleri-tvOS' do
+  # Pods for ÜniversitePersonelleri-tvOS
 
-  target 'saglikpersen-tvOSTests' do
+  target 'ÜniversitePersonelleri-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

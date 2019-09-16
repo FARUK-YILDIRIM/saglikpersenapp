@@ -13,7 +13,7 @@ const App = () => {
       <StatusBar hidden />
       <Header style={styles.header}>
         <Body>
-          <Title style={styles.title}>Sağlık Personel Sendikası</Title>
+          <Title style={styles.title}>Üniversite Personelleri Platformu</Title>
         </Body>
       </Header>
       <Router />

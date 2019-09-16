@@ -7,31 +7,19 @@ export default class Home extends Component {
       <View style={styles.container}>
         <Image
           style={styles.pic}
-          source={{
-            uri:
-              "https://saglikpersen.org/wp-content/uploads/2019/07/sendikaLogo.png"
-          }}
+          source={require("../assets/playstore-icon.png")}
         />
+        <Text>Uygulamanın amacı;</Text>
         <Text style={styles.topic}>
-          Sağlık Personel Sendikası (SAĞLIK-PER-SEN) 2019 yılında Erzurum’ da
-          kurulmuştur. Kamu sağlık çalışanlarının hakkını korumak için kurulan
-          sendikamız öncelikli olarak idari personellere (hemşire, tekniker,
-          teknisyen, vs) yapılan haksızlıkları baz almış ve kurucuları da idari
-          personellerden oluşmaktadır. Sendikamız hakkında detaylı bilgilere web
-          sayfamızdan ulaşabilirsiniz.
+          Üniversite personellerinin sorunlarını, sosyal medya çalışmaları ve
+          çeşitli etkinliklerle kamu oyuna duyurmaktır. Böylelikle başta tayin
+          ve becayiş hakkı olmak üzere üniversite personellerinin tüm haklarının
+          kazanımının sağlanması amaçlanmaktadır. Uygulamayı arkadaşlarımıza
+          önererek ve aralıklı takip ederek yapılan ve yapılacak olan
+          etkinlikler hakkında bilgi alabilirsiniz. Bizlere destek olmak için
+          bize ulaşın bölümünden öneri ve şikayetlerinizi bize
+          bildirebilirsiniz.
         </Text>
-        <Icon.Button
-          onPress={() => {
-            Linking.openURL("https://saglikpersen.org");
-          }}
-          name="web"
-          backgroundColor="#ddd"
-          color="#000"
-        >
-          <Text style={{ fontFamily: "Arial", fontSize: 15, color: "#000" }}>
-            Web Sitemiz
-          </Text>
-        </Icon.Button>
       </View>
     );
   }
@@ -45,7 +33,8 @@ const styles = StyleSheet.create({
   },
   pic: {
     width: 100,
-    height: 100
+    height: 100,
+    marginBottom: 5
   },
   topic: {
     justifyContent: "center",

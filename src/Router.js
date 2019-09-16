@@ -6,6 +6,7 @@ import color from "./styles/colors";
 // screens
 import Home from "./screens/Home";
 import Events from "./screens/Events";
+import Contact from "./screens/Contact";
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -24,6 +25,15 @@ const TabNavigator = createBottomTabNavigator(
         title: "Etkinlik Takvimi",
         tabBarIcon: ({ tintColor }) => (
           <Icon name="calendar-check-o" size={22} color={tintColor} />
+        )
+      }
+    },
+    Contact: {
+      screen: Contact,
+      navigationOptions: {
+        title: "Bize Ulaşın",
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="envelope-o" size={22} color={tintColor} />
         )
       }
     }

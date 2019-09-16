@@ -69,7 +69,7 @@ export default class Events extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://192.168.1.34:3000/events/list`)
+      .get(`https://panel.saglikpersen.org/events/list`)
       .then(response => {
         const { data } = response;
         const icerik = {};
